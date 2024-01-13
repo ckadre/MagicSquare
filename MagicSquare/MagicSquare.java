@@ -45,11 +45,17 @@ public class MagicSquare implements MagicSquareInterface
 	 * 
 	 * @return 2D array of ints that may or may not be a valid magic square
 	 */
-    @Override
     public int[][] getMatrix() 
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMatrix'");
+        int[][] matrix = new int[][];
+        for(int i = 0; i < this.matrix.getLength(); i++)
+        {
+            for(int j = 0; j < this.matrix[i].getLength(); j++)
+            {
+                matrix[i][j] = this.matrix[i][j];
+            }
+        }
+        return matrix;
     }
     
 	/**
@@ -70,6 +76,17 @@ public class MagicSquare implements MagicSquareInterface
 	 */
 	public String toString()
     {
-
+        if (isMagicSquare = true)
+        {
+            System.out.println("The matrix ");
+            System.out.println( // TODO print 
+            System.out.println("is a magic square.");
+        }
+        else
+        {
+            System.out.println("The matrix ");
+            System.out.println( // TODO print 
+            System.out.println("is not a magic square.");
+        }
     }
 }
