@@ -1,7 +1,7 @@
 //imports
 /**
  * Description
- * 
+ *
  * @author Cameron Kadre
  * @version Spring 2024
  */
@@ -28,34 +28,35 @@ public class MagicSquare implements MagicSquareInterface
 	 * Evaluate the matrix (whether read from file or
 	 * generated) and return a boolean verdict of
 	 * whether the matrix is a magic square.
-	 * 
+	 *
 	 * @return true if matrix is a magic square, else false
 	 */
     @Override
-    public boolean isMagicSquare() 
+    public boolean isMagicSquare()
     {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isMagicSquare'");
     }
 
 	/**
-	 * Return a copy of the matrix (whether read from file 
+	 * Return a copy of the matrix (whether read from file
 	 * or generated) as a 2D array of ints. Be sure this
 	 * method does not compromise encapsulation.
-	 * 
+	 *
 	 * @return 2D array of ints that may or may not be a valid magic square
 	 */
-    public int[][] getMatrix() 
+    public int[][] getMatrix()
     {
-        int[][] matrix = new int[][];
-        for(int i = 0; i < this.matrix.getLength(); i++)
+        int[][] returnMatrix;
+        returnMatrix = new int[matrix.length][matrix[0].length];
+        for(int i = 0; i < matrix.length; i++)
         {
-            for(int j = 0; j < this.matrix[i].getLength(); j++)
+            for(int j = 0; j < matrix[i].length; j++)
             {
                 matrix[i][j] = this.matrix[i][j];
             }
         }
-        return matrix;
+        return returnMatrix;
     }
     
 	/**
@@ -71,22 +72,29 @@ public class MagicSquare implements MagicSquareInterface
 	 *      9 4 2
 	 *      1 6 5
 	 *    is not a magic square.
-	 *    
+	 *
 	 * @return formatted string showing the matrix and whether it is a valid magic square
 	 */
 	public String toString()
     {
+        String magicSquare = "";
+        String matrixString = "";
+        for (int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                matrixString += matrix[i][j] + " ";
+            }
+            matrixString += "\n";
+        }
         if (isMagicSquare = true)
         {
-            System.out.println("The matrix ");
-            System.out.println( // TODO print 
-            System.out.println("is a magic square.");
+            magicSquare = "The matrix \n" + matrixString + "is a magic square.";
         }
         else
         {
-            System.out.println("The matrix ");
-            System.out.println( // TODO print 
-            System.out.println("is not a magic square.");
+            magicSquare = "The matrix \n" + matrixString + "is not a magic square.";
         }
+        return magicSquare;
     }
 }
