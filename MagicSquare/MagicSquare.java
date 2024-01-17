@@ -14,12 +14,12 @@ public class MagicSquare implements MagicSquareInterface
 
     //constructors
 
-    private MagicSquare(String fileName)
+    public MagicSquare(String fileName)
     {
 
     }
 
-    private MagicSquare(String fileName, int n)
+    public MagicSquare(String fileName, int n)
     {
         
     }
