@@ -2,7 +2,9 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -29,9 +31,55 @@ public class MagicSquare implements MagicSquareInterface
     public MagicSquare(String fileName, int size) throws IOException
     {
         this.size = size;
+        matrix = new int[size][size];
+        writeMatrix(matrix, fileName);
     }
-    
+
     //methods
+
+    private void writeMatrix(int[][] matrix, String fileName) throws IOException
+    {
+        File newFile = new File(fileName);
+        PrintWriter outFile = new PrintWriter(new FileWriter(newFile));
+        int row = size - 1;
+        int col = size / 2;
+        int oldRow;
+        int oldCol;
+        outFile.println(size);
+        for (int i = 1; i < (size * size); i++)
+        {
+            matrix[row][col] = i;
+            oldRow = row;
+            oldCol = col;
+            row++;
+            col++;
+            if (row == size)
+            {
+                row = 0;
+            }
+            if (col == size)
+            {
+                col = 0;
+            }
+            if (matrix[row][col] == 0)
+            {
+                row = oldRow;
+                col = oldCol;
+                row--;
+            }
+        }
+        String matrixString = "";
+        for (int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+            matrixString.concat((Integer.toString(matrix[i][j])) + " ");
+            }
+            matrixString.concat("\n");
+        }
+        outFile.println(matrixString);
+        outFile.close();
+    }
 
     private int[][] readMatrix(String fileName) throws FileNotFoundException
     {
