@@ -1,4 +1,10 @@
 //imports
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * Description
  *
@@ -11,19 +17,50 @@ public class MagicSquare implements MagicSquareInterface
     //instance vars
     private boolean isMagicSquare;
     private int[][] matrix;
+    private int size;
 
     //constructors
 
-    public MagicSquare(String fileName)
+    public MagicSquare(String fileName) throws FileNotFoundException
     {
-
+        readMatrix(fileName);
     }
 
-    public MagicSquare(String fileName, int n)
+    public MagicSquare(String fileName, int size) throws IOException
     {
-        
+        this.size = size;
     }
+    
     //methods
+
+    private int[][] readMatrix(String fileName) throws FileNotFoundException
+    {
+        File readFile = new File(fileName);
+        Scanner fileScan = new Scanner(readFile);
+        int size = Integer.parseInt(fileScan.next());
+        matrix = new int[size][size];
+        String line = "";
+        Scanner lineScan = new Scanner(line);
+        while (fileScan.hasNext())
+        {
+            line = fileScan.next();
+            while (lineScan.hasNext())
+            {
+                int x = Integer.parseInt(lineScan.next());
+                for (int i = 0; i < matrix.length; i++)
+                {
+                    for (int j = 0; j < matrix[i].length; j++)
+                    {
+                        matrix[i][j] = x;
+                    }
+                }
+            }
+        }
+        fileScan.close();
+        lineScan.close();
+        return matrix;
+    }
+
 	/**
 	 * Evaluate the matrix (whether read from file or
 	 * generated) and return a boolean verdict of
@@ -31,11 +68,10 @@ public class MagicSquare implements MagicSquareInterface
 	 *
 	 * @return true if matrix is a magic square, else false
 	 */
-    @Override
     public boolean isMagicSquare()
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isMagicSquare'");
+        //TODO method
+        return isMagicSquare;
     }
 
 	/**
