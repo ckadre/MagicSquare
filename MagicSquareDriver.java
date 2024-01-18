@@ -1,5 +1,6 @@
 //imports
 
+import java.io.IOException;
 
 /**
  * Description
@@ -10,7 +11,7 @@
 
 public class MagicSquareDriver
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException 
     {
 
         if ((args.length < 2) || (args.length > 3))
@@ -28,7 +29,13 @@ public class MagicSquareDriver
             System.out.println(magicSquare.toString());
         } else if (operation.equals("-create"))
         {
+            if (args.length != 3)
+            {
+                System.err.println("Usage: java MagicSquareDriver <-check | -create> <filename> < | size>");
+                System.exit(1);
+            }
             int size = Integer.parseInt(args[2]);
+
             magicSquare = new MagicSquare(fileName, size);
         } else
         {

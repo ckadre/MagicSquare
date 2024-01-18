@@ -1,5 +1,3 @@
-//imports
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -19,25 +17,25 @@ public class MagicSquare implements MagicSquareInterface
     //instance vars
     private boolean isMagicSquare;
     private int[][] matrix;
-    private int size;
 
     //constructors
 
     public MagicSquare(String fileName) throws FileNotFoundException
     {
+        isMagicSquare = false;
         readMatrix(fileName);
     }
 
     public MagicSquare(String fileName, int size) throws IOException
     {
-        this.size = size;
+        isMagicSquare = false;
         matrix = new int[size][size];
-        writeMatrix(matrix, fileName);
+        writeMatrix(matrix, fileName, size);
     }
 
     //methods
 
-    private void writeMatrix(int[][] matrix, String fileName) throws IOException
+    private void writeMatrix(int[][] matrix, String fileName, int size) throws IOException
     {
         File newFile = new File(fileName);
         PrintWriter outFile = new PrintWriter(new FileWriter(newFile));
@@ -85,13 +83,13 @@ public class MagicSquare implements MagicSquareInterface
     {
         File readFile = new File(fileName);
         Scanner fileScan = new Scanner(readFile);
-        int size = Integer.parseInt(fileScan.next());
+        int size = Integer.parseInt(fileScan.nextLine());
         matrix = new int[size][size];
         String line = "";
-        Scanner lineScan = new Scanner(line);
-        while (fileScan.hasNext())
+        while (fileScan.hasNextLine())
         {
-            line = fileScan.next();
+            line = fileScan.nextLine();
+            Scanner lineScan = new Scanner(line);
             while (lineScan.hasNext())
             {
                 int x = Integer.parseInt(lineScan.next());
@@ -103,9 +101,9 @@ public class MagicSquare implements MagicSquareInterface
                     }
                 }
             }
+            lineScan.close();
         }
         fileScan.close();
-        lineScan.close();
         return matrix;
     }
 
@@ -118,16 +116,15 @@ public class MagicSquare implements MagicSquareInterface
 	 */
     public boolean isMagicSquare()
     {
-        //TODO method
+        //TODO finish this method
+        int size = matrix.length;
+        
         return isMagicSquare;
     }
 
 	/**
-	 * Return a copy of the matrix (whether read from file
-	 * or generated) as a 2D array of ints. Be sure this
-	 * method does not compromise encapsulation.
-	 *
-	 * @return 2D array of ints that may or may not be a valid magic square
+	 * Returns a copy of the matrix associated with a MagicSquare instance.
+	 * @return 2D array of ints
 	 */
     public int[][] getMatrix()
     {
@@ -144,20 +141,8 @@ public class MagicSquare implements MagicSquareInterface
     }
     
 	/**
-	 * Return a string formatted as in these examples:
-	 *   The matrix
-	 *     4 9 2
-	 *     3 5 7
-	 *     8 1 6
-	 *   is a magic square.
-	 *  or
-	 *    The matrix
-	 *      5 3 7
-	 *      9 4 2
-	 *      1 6 5
-	 *    is not a magic square.
-	 *
-	 * @return formatted string showing the matrix and whether it is a valid magic square
+     * Returns a string displaying the matrix and whether it is a magic square. 
+	 * @return formatted String
 	 */
 	public String toString()
     {
