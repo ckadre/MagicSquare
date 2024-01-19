@@ -35,8 +35,8 @@ public class MagicSquareDriver
                 System.exit(1);
             }
             int size = Integer.parseInt(args[2]);
-
             magicSquare = new MagicSquare(fileName, size);
+            System.out.println(magicSquare.toString());
         } else
         {
             System.err.println("Usage: java MagicSquareDriver <-check | -create> <filename> < | size>");

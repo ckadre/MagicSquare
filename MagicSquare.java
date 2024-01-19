@@ -85,21 +85,21 @@ public class MagicSquare implements MagicSquareInterface
         Scanner fileScan = new Scanner(readFile);
         int size = Integer.parseInt(fileScan.nextLine());
         matrix = new int[size][size];
-        String line = "";
+        String line = fileScan.nextLine();
+        Scanner lineScan = new Scanner(line);
         while (fileScan.hasNextLine())
         {
-            line = fileScan.nextLine();
-            Scanner lineScan = new Scanner(line);
             while (lineScan.hasNext())
             {
-                int x = Integer.parseInt(lineScan.next());
-                for (int i = 0; i < matrix.length; i++)
+                for (int row = 0; row < size; row++)
                 {
-                    for (int j = 0; j < matrix[i].length; j++)
+                    for (int col = 0; col < size; col++)
                     {
-                        matrix[i][j] = x;
+                        int x = Integer.parseInt(lineScan.next());
+                        matrix[row][col] = x;
                     }
                 }
+                line = fileScan.nextLine();
             }
             lineScan.close();
         }
@@ -108,17 +108,12 @@ public class MagicSquare implements MagicSquareInterface
     }
 
 	/**
-	 * Evaluate the matrix (whether read from file or
-	 * generated) and return a boolean verdict of
-	 * whether the matrix is a magic square.
-	 *
+	 * Determine if the matrix associated with the MagicSquare instance is a magic square
 	 * @return true if matrix is a magic square, else false
 	 */
     public boolean isMagicSquare()
     {
         //TODO finish this method
-        int size = matrix.length;
-        
         return isMagicSquare;
     }
 

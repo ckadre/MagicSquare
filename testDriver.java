@@ -1,22 +1,12 @@
-import java.util.Random;
+import java.io.FileNotFoundException;
 
 public class testDriver
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException
     {
-        boolean isMagicSquare = true;
-        int[][] mat = new int[3][3];
-        Random r = new Random();
-        int k = 0;
-        for (int i = 0; i < mat.length; i++)
-        {
-            for (int j = 0; j < mat[i].length; j++)
-            {
-                k = r.nextInt(50);
-                mat[i][j] = k;
-            }
-        }
-        test newTest = new test(isMagicSquare, mat);
+    
+        String fileName = args[0];
+        test newTest = new test(fileName);
         System.out.println(newTest.toString());
     }
 }
