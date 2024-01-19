@@ -17,26 +17,27 @@ public class test
     {
         File readFile = new File(fileName);
         Scanner fileScan = new Scanner(readFile);
-        int size = Integer.parseInt(fileScan.nextLine());
+        int size = Integer.parseInt(fileScan.next());
         matrix = new int[size][size];
-        String line = fileScan.nextLine();
-        Scanner lineScan = new Scanner(line);
-        while (fileScan.hasNextLine())
+        String line = fileScan.next();
+        Scanner lineScan = new Scanner(line).useDelimiter("\n");
+        int x = 0;
+        if (fileScan.hasNext())
         {
-            while (lineScan.hasNextInt())
+            if (lineScan.hasNext())
             {
                 for (int row = 0; row < size; row++)
                 {
                     for (int col = 0; col < size; col++)
                     {
-                        int x = lineScan.nextInt();
+                        x = Integer.parseInt(lineScan.next());
                         matrix[row][col] = x;
                     }
                 }
-                line = fileScan.nextLine();
+                line = fileScan.next();
             }
-            lineScan.close();
         }
+        lineScan.close();
         fileScan.close();
         return matrix;
     }
@@ -65,8 +66,6 @@ public class test
     }
     public boolean isMagicSquare()
     {
-
-    
     isMagicSquare = true;
     int size = matrix.length;
     int magicNum = (size * ((size * size) + 1)) / 2;

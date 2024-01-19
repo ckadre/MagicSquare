@@ -113,7 +113,71 @@ public class MagicSquare implements MagicSquareInterface
 	 */
     public boolean isMagicSquare()
     {
-        //TODO finish this method
+        isMagicSquare = true;
+        int size = matrix.length;
+        int magicNum = (size * ((size * size) + 1)) / 2;
+        int[] sumArray = new int[(size * size) + 2];
+        boolean equalsMagicNum;
+        int i = size;
+        int sum = 0;
+        int j;
+        int count = 0;
+        while (i > 0)
+        {
+            for (j = 0; j < size; j++)
+            {
+                sum += matrix[i][j];
+            }
+            sumArray[count] = sum;
+            sum = 0;
+            i--;
+            count++;
+        }
+        j = size;
+        while (j > 0)
+        {
+            for (i = 0; i < size; i++)
+            {
+                sum += matrix[i][j];
+            }
+            sumArray[count] = sum;
+            sum = 0;
+            j--;
+            count++;
+        }
+        for (j = 0; j < size; j++)
+        {
+            sum += matrix[j][j];
+        }
+        sumArray[count] = sum;
+        count++;
+        sum = 0;
+        for (i = 0; i < size; i ++)
+        {
+            for (j = (size - 1); j > 0; j--)
+            {
+                sum += matrix[i][j];
+            }
+        }
+        sumArray[count] = sum;
+        count++;
+        sum = 0;
+        equalsMagicNum = true;
+        for (int k : sumArray)
+        {
+            if (k != magicNum)
+            {
+                equalsMagicNum = false;
+            }
+            else
+            {
+                equalsMagicNum = true;
+            }
+        }
+        if (equalsMagicNum == false)
+        {
+            isMagicSquare = false;
+        }
         return isMagicSquare;
     }
 
