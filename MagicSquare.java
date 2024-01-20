@@ -35,8 +35,51 @@ public class MagicSquare implements MagicSquareInterface
 
     //methods
 
-    private void writeMatrix(int[][] matrix, String fileName, int size) throws IOException
+    /*
+     * describe
+     * @param String of the file name to read from
+     * @return an int[][] array
+     */
+    private int[][] readMatrix(String fileName) throws FileNotFoundException
     {
+        File readFile = new File(fileName);
+        Scanner fileScan = new Scanner(readFile);
+        int size = Integer.parseInt(fileScan.nextLine());
+        matrix = new int[size][size];
+        String line = "";
+        //Scanner lineScan = new Scanner(line);
+        while (fileScan.hasNextLine())
+        {
+            line = fileScan.nextLine();
+            Scanner lineScan = new Scanner(line);
+            while (lineScan.hasNext())
+            {
+                for (int row = 0; row < size; row++)
+                {
+                    for (int col = 0; col < size; col++)
+                    {
+                        int x = Integer.parseInt(lineScan.next());
+                        matrix[row][col] = x;
+                    }
+                    line = fileScan.nextLine();
+                }
+                //line = fileScan.nextLine();
+            }
+            lineScan.close();
+        }
+        fileScan.close();
+        return matrix;
+    }
+
+    /*
+     * describe
+     * @param int[][] matrix
+     * @param String name of file to write to
+     * @param integer size of the matrix
+     */
+    private void writeMatrix(int[][] matrix, String fileName, int n) throws IOException
+    {
+        int size = n;
         File newFile = new File(fileName);
         PrintWriter outFile = new PrintWriter(new FileWriter(newFile));
         int row = size - 1;
@@ -77,34 +120,6 @@ public class MagicSquare implements MagicSquareInterface
         }
         outFile.println(matrixString);
         outFile.close();
-    }
-
-    private int[][] readMatrix(String fileName) throws FileNotFoundException
-    {
-        File readFile = new File(fileName);
-        Scanner fileScan = new Scanner(readFile);
-        int size = Integer.parseInt(fileScan.nextLine());
-        matrix = new int[size][size];
-        String line = fileScan.nextLine();
-        Scanner lineScan = new Scanner(line);
-        while (fileScan.hasNextLine())
-        {
-            while (lineScan.hasNext())
-            {
-                for (int row = 0; row < size; row++)
-                {
-                    for (int col = 0; col < size; col++)
-                    {
-                        int x = Integer.parseInt(lineScan.next());
-                        matrix[row][col] = x;
-                    }
-                }
-                line = fileScan.nextLine();
-            }
-            lineScan.close();
-        }
-        fileScan.close();
-        return matrix;
     }
 
 	/**

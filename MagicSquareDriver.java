@@ -1,5 +1,4 @@
 //imports
-
 import java.io.IOException;
 
 /**
@@ -11,7 +10,7 @@ import java.io.IOException;
 
 public class MagicSquareDriver
 {
-    public static void main(String[] args) throws IOException 
+    public static void main(String[] args) throws IOException
     {
 
         if ((args.length < 2) || (args.length > 3))
