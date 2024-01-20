@@ -6,20 +6,21 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- * Description
+ * An instance of MagicSquare is associated with a matrix, either read in from a file or created.
+ * This matrix may or may not be a magic square, where the sum of each value in each row, column, and diagonal is the same. 
  *
  * @author Cameron Kadre
  * @version Spring 2024
  */
 
+
 public class MagicSquare implements MagicSquareInterface
 {
-    //instance vars
+    //Instance Variables
     private boolean isMagicSquare;
     private int[][] matrix;
 
-    //constructors
-
+    //Constructors
     public MagicSquare(String fileName) throws FileNotFoundException
     {
         isMagicSquare = false;
@@ -33,10 +34,10 @@ public class MagicSquare implements MagicSquareInterface
         writeMatrix(matrix, fileName, size);
     }
 
-    //methods
+
 
     /*
-     * describe
+     * Reads the matrix from a file and stores it in a 2D integer array. 
      * @param String of the file name to read from
      * @return an int[][] array
      */
@@ -47,7 +48,6 @@ public class MagicSquare implements MagicSquareInterface
         int size = Integer.parseInt(fileScan.nextLine());
         matrix = new int[size][size];
         String line = "";
-        //Scanner lineScan = new Scanner(line);
         while (fileScan.hasNextLine())
         {
             line = fileScan.nextLine();
@@ -63,7 +63,6 @@ public class MagicSquare implements MagicSquareInterface
                     }
                     line = fileScan.nextLine();
                 }
-                //line = fileScan.nextLine();
             }
             lineScan.close();
         }
@@ -72,7 +71,7 @@ public class MagicSquare implements MagicSquareInterface
     }
 
     /*
-     * describe
+     * Creates a new magic square and writes it to a file.
      * @param int[][] matrix
      * @param String name of file to write to
      * @param integer size of the matrix
@@ -215,7 +214,7 @@ public class MagicSquare implements MagicSquareInterface
     }
     
 	/**
-     * Returns a string displaying the matrix and whether it is a magic square. 
+     * Returns a string displaying the matrix and whether it is a magic square.
 	 * @return formatted String
 	 */
 	public String toString()
